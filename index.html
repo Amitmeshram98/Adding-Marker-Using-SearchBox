@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+  <link rel="stylesheet" href="style.css"/>
+    <title>Nagpur Map</title>
+</head>
+
+
+<body>
+    <div id="inputForm">Latitude:
+        <input id="txtMapTitle1" type="text" placeholder="enter Lattitude"/>
+        Longitude:
+        <input id="txtMapTitle2" type="text" placeholder="enter Longitude"/>
+        <input id="btn_addmarker" type="button" value="Add Marker" onclick="zoomtoLocation()" />
+      </div>
+
+    <div id="map" style="width: 100%; height: 855px;"></div>
+    
+    <script>
+
+    var map = new ol.Map({
+    target: 'map',
+     layers: [
+         new ol.layer.Tile({
+             source: new ol.source.OSM({
+               
+                zoom: 14,
+             })
+         })
+     ],
+    
+     view: new ol.View({
+        projection:'EPSG:4326',
+         center: [79.0882,21.1458],
+        
+         zoom: 15
+     })
+ });
+
+
+
+ var mousePosition = new ol.control.MousePosition({
+        className: 'mousePosition',
+        projection: 'EPSG:4326',
+        coordinateFormat: function (coordinate) { return ol.coordinate.format(coordinate, '{y} , {x}', 8); }
+    });
+    map.addControl(mousePosition);
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
